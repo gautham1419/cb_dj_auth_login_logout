@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style>
+            .profile-text-container {
+                position: relative; /* To position the dropdown relative to this container */
+                display: inline-block; /* Optional: keep it inline */
+            }
+
+            .dropdown-menu {
+                display: none; /* Hide the dropdown by default */
+                position: absolute;
+                background-color:black ;
+                color:white ;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                padding: 12px 16px;
+                z-index: 1;
+                top: 100%; /* Position below the profile text */
+                left: 0; /* Align to the left */
+            }
+
+            .dropdown-menu p {
+                margin: 8px 0; /* Add some margin for spacing */
+            }
+
+            .profile-text-container:hover .dropdown-menu,
+            .profile-text-container.active .dropdown-menu {
+                display: block; /* Show the dropdown on hover or when active */
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+            .logout
+            {   text-align:center;
+                position:absolute;
+                width:270px;
+                margin:10px;
+                margin-top:5%;
+                margin-left:33%;
+                background-color:red;
+                padding:11px ;
+                width:23%;
+                border-radius:7px;
+
+            }
+            .resized-image {
+                width: 230px; /* Adjust width as needed */
+                height: 290px; /* Adjust height as needed */
+                position: absolute;
+                top: 100px;
+                right: 60px;
+                border-radius:5px;
+                        }
+            .logout a{
+                color: white;
+                text-decoration: none;
+                font-size: 20px;
+            }
+            .box{
+                width: 250px; /* Adjust width as needed */
+                height: 250px;
+                background-color: black; /* Sets the background color to black */
+                color: white;
+                border-radius:7px;
+                padding:10px;
+                text-align: center;
+                margin-top: 1%;
+                justify-content: center;
+            }
+           .resized-image1 {
+                    width: 230px; /* Adjust width as needed */
+                    height: 300px; /* Adjust height as needed */
+                    position: absolute;
+                    top: 100px;
+                    left: 60px;
+           }
+    </style>
+    <title>Movieify</title>
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo">Movieify</h1>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="{% static 'images/profile.jpg' %}" alt="Profile Picture">
+                <div class="profile-text-container">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                    <div class="dropdown-menu">
+                        <p>Hello, {{ user.username }}!</p>
+                        <p>Email: {{ user.email }}</p>
+                        <p>First Name: {{ user.first_name }}</p>
+                        <p>Last Name: {{ user.last_name }}</p>
+                    </div>
+                </div>
+
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+
+        <a href="{% url 'home' %}" class="left-menu-icon-link">
+            <i class="left-menu-icon fas fa-home"></i>
+        </a>
+        <i class="left-menu-icon fas fa-users" style="color: green;"></i>
+        <i class="left-menu-icon fas fa-shopping-cart"  id="shopping-cart" ></i>
+    </div>
+    <div class="container">
+        <div class="content-container">
+            <div class="movie-list-container" id="movies">
+                <center>
+                    <div class="box" >
+                        <h1>Hello, {{ user.username }}!</h1><br>
+                        <p>email:{{ user.email }}</p><br>
+                        <p>First Name: {{ user.first_name }}</p><br>
+                        <p>Last Name: {{ user.last_name }}</p>
+                        <img src="{% static 'images/YE.webp' %}" class="resized-image">
+                        <img src="{% static 'images/kendrick.jpg' %}" class="resized-image1">
+                    </div >
+                    <div class="logout">
+                        <a href="{% url 'login' %}">Logout</a>
+                    </div>
+                </center>
+
+            </div>
+            <!-- Repeat similar blocks for other movie lists -->
+        </div>
+    </div>
+    <script src="{% static 'js/app.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var profileContainer = document.querySelector('.profile-text-container');
+
+        profileContainer.addEventListener('click', function () {
+            this.classList.toggle('active');
+        });
+
+        // Optional: Close the dropdown if clicked outside
+        document.addEventListener('click', function (event) {
+            if (!profileContainer.contains(event.target)) {
+                profileContainer.classList.remove('active');
+            }
+        });
+
+        document.getElementById('shopping-cart').addEventListener('click', function() {
+            window.location.href = "{% url 'buy' %}";
+        });
+
+        document.getElementById('user').addEventListener('click', function() {
+            window.location.href = "{% url 'user' %}";
+        });
+    });
+</script>
+
+
+</body>
+
+</html>

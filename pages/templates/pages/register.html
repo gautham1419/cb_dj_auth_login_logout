@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dialogify Signup</title>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}">
+    <link rel="icon" href="{% static 'images/IMG_20240710_162130.jpg' %}">
+    <style>
+        .resized-image1 {
+            width: 20px; /* or any size you want */
+            height: 10px; /* maintains aspect ratio */
+        }
+        .resized-image {
+            width: 200px; /* or any size you want */
+            height: auto; /* maintains aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+		<div class="inner img"><h2 style="color: black; fon">DIALOGIFY</h2>
+			<!-- logo area -->
+			<div class="logo">
+
+			</div>
+			<!-- login area -->
+		</div>
+	</div>
+    <div class="main mg">
+        <div class="left">
+			<h3>Dialogify helps you connect and share with the people in your life.</h3>
+            <img src="{% static 'images/IMG_20240710_162130.jpg' %}" class="resized-image">
+		</div>
+
+        <div class="right">
+            <h1>Sign Up</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="username" id="username" placeholder="Username" class="form-control" required><br>
+                    <input type="email" name="email" id="email" placeholder="Email" class="form-control" required><br>
+                    <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control" required><br>
+                    <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="form-control" required><br>
+                    <input type="password" name="password1" id="password1" placeholder="Password" class="form-control" required><br>
+                    <input type="password" name="password2" id="password2" placeholder="Confirm Password" class="form-control" required><br>
+                    <input type="submit" value="Register" style="background-color: green; color: white;" class="form-control">
+                </form>
+        </div>
+    </div>
+</body>
+
+</html>

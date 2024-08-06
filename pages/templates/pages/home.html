@@ -1,3 +1,243 @@
-<h1>Hello World</h1>
+<!doctype html>
+<html lang="en">
 
-<a href="{% url 'logout' %}">Logout</a>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style1.css' %}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .profile-text{
+            margin-left:0px;
+        }
+        .profile-container{
+            margin-left:5px;
+        }
+               .profile-text-container {
+                position: relative; /* To position the dropdown relative to this container */
+                display: inline-block; /* Optional: keep it inline */
+                margin-right:150px;
+            }
+
+            .dropdown-menu {
+                display: none; /* Hide the dropdown by default */
+                position: absolute;
+                background-color: black;
+                color: white;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                padding: 12px 16px;
+                z-index: 1;
+                top: 100%; /* Position below the profile text */
+                left: 0; /* Align to the left */
+            }
+
+            .dropdown-menu p {
+                margin: 8px 0; /* Add some margin for spacing */
+            }
+
+            .profile-text-container:hover .dropdown-menu,
+            .profile-text-container.active .dropdown-menu {
+                display: block; /* Show the dropdown on hover or when active */
+            }
+    </style>
+    <title>Movieify</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo">Movieify</h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-list-item" > <a href="#movies">Movies</a></li>
+                    <li class="menu-list-item"><a href="#Series">Series</a></li>
+                    <li class="menu-list-item">Popular</li>
+                </ul>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="{% static 'images/profile.jpg' %}" alt="Profile Picture">
+                <div class="profile-text-container">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
+                        <div class="dropdown-menu" ">
+                            <h1>Hello, {{ user.username }}!</h1>
+                            <p>Email: {{ user.email }}</p>
+                            <p>First Name: {{ user.first_name }}</p>
+                            <p>Last Name: {{ user.last_name }}</p>
+                        </div>
+                </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+
+        <a href="{% url 'home' %}" class="left-menu-icon-link">
+            <i class="left-menu-icon fas fa-home" style="color: green;"></i>
+        </a>
+        <i class="left-menu-icon fas fa-users" id="user"></i>
+        <i class="left-menu-icon fas fa-shopping-cart"  id="shopping-cart"></i>
+    </div>
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content"
+                style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('{% static 'images/f-1.jpg' %}');">
+                <img class="featured-title" src="{% static 'images/f-t-1.png' %}" alt="Featured Title 1">
+                <p class="featured-desc">Django Unchained is a 2012 American revisionist Western film written and directed by Quentin Tarantino,
+                    starring Jamie Foxx, Christoph Waltz, Leonardo DiCaprio, Kerry Washington, and Samuel L. Jackson, with Walton Goggins,
+                    Dennis Christopher, James Remar, Michael Parks, and Don Johnson in supporting roles..</p>
+                <button class="featured-button">WATCH</button>
+            </div>
+            <div class="movie-list-container" id="movies">
+                <br>
+                <h1 class="movie-list-title">NEW RELEASES</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/8.jpg' %}" alt="Movie 1">
+                            <span class="movie-list-item-title">Oblivion</span>
+                            <p class="movie-list-item-desc">Her is a 2013 American romantic comedy-drama film written,
+                                directed, and co-produced by Spike Jonze.  </p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/10.jpg' %}" alt="Movie 2">
+                            <span class="movie-list-item-title">Due date</span>
+                            <p class="movie-list-item-desc">Star Wars is a space opera media franchise created by George Lucas,
+                                which  1977 film became a worldwide pop culture phenomenon.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/19.jpg' %}" alt="Movie 2">
+                            <span class="movie-list-item-title">Spiderman</span><br>
+                            <p class="movie-list-item-desc">Star Wars is a space opera media franchise created by George Lucas,
+                                which  1977 film became a worldwide pop culture phenomenon.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/11.jpg' %}" alt="Movie 2">
+                            <span class="movie-list-item-title">Kickass2</span>
+                            <p class="movie-list-item-desc">Star Wars is a space opera media franchise created by George Lucas,
+                                which  1977 film became a worldwide pop culture phenomenon.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/2.jpeg' %}" alt="Movie 2">
+                            <span class="movie-list-item-title">Star Wars</span>
+                            <p class="movie-list-item-desc">Star Wars is a space opera media franchise created by George Lucas,
+                                which  1977 film became a worldwide pop culture phenomenon.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <!-- Add more movie items as needed -->
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <!-- Repeat similar blocks for other movie lists -->
+            <div class="featured-content"
+                style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('{% static 'images/f-2.jpg' %}');" >
+                <img class="featured-title" src="{% static 'images/f-t-2.png' %}" alt="Featured Title 2">
+                <p class="featured-desc">Dark is a German science fiction thriller television series co-created by the couple Baran bo Odar
+                    and Jantje Friese. It ran for three seasons from 2017 to 2020. The story follows the dysfunctional characters from
+                    the fictional town of Winden in Germany, as they pursue the truth in the aftermath of a child's disappearance.</p>
+                <button class="featured-button">WATCH</button>
+            </div>
+            <div class="movie-list-container" id="Series">
+                <br>
+                <h1 class="movie-list-title">NEW RELEASES</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/got.jpg' %}" alt="Movie 1">
+                            <span class="movie-list-item-title">Game of thrones</span>
+                            <p class="movie-list-item-desc">George R.R. Martin's "A Song of Ice and Fire" is
+                                brought to the screen as  its considerable storytelling
+                                teeth into the medieval fantasy epic.  </p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/boys.jpg' %}" alt="Movie 2">
+                            <span class="movie-list-item-title">The Boys</span>
+                            <p class="movie-list-item-desc">A group of vigilantes set out to take down corrupt
+                                superheroes who abuse their superpowers..</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/loki.jpg' %}" alt="Movie 2">
+                            <span class="movie-list-item-title">Loki</span><br>
+                            <p class="movie-list-item-desc">Loki, the God of Mischief,
+                                steps out of his brother's shadow to embark on an adventure
+                                 after the events of "Avengers: Endgame..</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/11.jpg' %}" alt="Movie 2">
+                            <span class="movie-list-item-title">Kickass2</span>
+                            <p class="movie-list-item-desc">Star Wars is a space opera media franchise created by George Lucas,
+                                which  1977 film became a worldwide pop culture phenomenon.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="{% static 'images/2.jpeg' %}" alt="Movie 2">
+                            <span class="movie-list-item-title">Star Wars</span>
+                            <p class="movie-list-item-desc">Star Wars is a space opera media franchise created by George Lucas,
+                                which  1977 film became a worldwide pop culture phenomenon.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <!-- Add more movie items as needed -->
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="{% static 'js/app.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var profileContainer = document.querySelector('.profile-text-container');
+
+        profileContainer.addEventListener('click', function () {
+            this.classList.toggle('active');
+        });
+
+        // Optional: Close the dropdown if clicked outside
+        document.addEventListener('click', function (event) {
+            if (!profileContainer.contains(event.target)) {
+                profileContainer.classList.remove('active');
+            }
+        });
+
+        document.getElementById('shopping-cart').addEventListener('click', function() {
+            window.location.href = "{% url 'buy' %}";
+        });
+
+        document.getElementById('user').addEventListener('click', function() {
+            window.location.href = "{% url 'user' %}";
+        });
+    });
+</script>
+</body>
+
+</html>
